@@ -9,8 +9,11 @@ import {
 import decrement from '../../../../assets/decrement.svg'
 import increment from '../../../../assets/increment.svg'
 import cart from '../../../../assets/btn-cart.svg'
+import { useCart } from '../../../../hooks/useCart'
+import { ItemsProps } from '../../../../contexts/CoffeeContext'
 
 interface CardCoffeeProps {
+  item: ItemsProps[]
   image: string
   title: string
   description: string
@@ -18,11 +21,22 @@ interface CardCoffeeProps {
 }
 
 export function CardCoffee({
+  item,
   image,
   title,
   description,
   price,
 }: CardCoffeeProps) {
+  const { addToCart, removeAllQuantityOfItem } = useCart()
+
+  function handleAddToCart() {
+    addToCart(item)
+  }
+
+  function handleRemoverAllQuantityOfItem() {
+    removeAllQuantityOfItem(item.id)
+  }
+
   return (
     <ContainerCardCoffee>
       <ImageCoffee src={image} alt={'Imagem do café' + title} />
@@ -35,11 +49,11 @@ export function CardCoffee({
         </strong>
 
         <ButtonsActions>
-          <button>
+          <button onClick={handleRemoverAllQuantityOfItem}>
             <img src={decrement} alt="Imagem sinal de menos" />
           </button>
           <input value={0} />
-          <button>
+          <button onClick={handleAddToCart}>
             <img src={increment} alt="Imagem sinal de mais" />
           </button>
         </ButtonsActions>

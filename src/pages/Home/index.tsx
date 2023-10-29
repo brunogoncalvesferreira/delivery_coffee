@@ -12,9 +12,10 @@ import {
 import image from '../../assets/image.svg'
 import { CardCoffee } from './components/CardCoffee/index'
 
-import { DATABASE } from '../../database/data'
+import { useCart } from '../../hooks/useCart'
 
 export function Home() {
+  const { items } = useCart()
   return (
     <Container>
       <Main>
@@ -37,9 +38,10 @@ export function Home() {
         <h2>Nossos cafés</h2>
 
         <ContainerCoffee>
-          {DATABASE.map((coffee) => (
+          {items.map((coffee) => (
             <CardCoffee
               key={coffee.id}
+              item={coffee}
               title={coffee.title}
               image={coffee.image}
               price={coffee.price}

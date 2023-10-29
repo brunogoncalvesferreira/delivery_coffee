@@ -1,8 +1,9 @@
 import decrement from '../../../../assets/decrement.svg'
 import increment from '../../../../assets/increment.svg'
 import trash from '../../../../assets/trash.svg'
+import { useCart } from '../../../../hooks/useCart'
+import { CartProps } from '../../../../contexts/CoffeeContext'
 
-import coffee from '../../../../assets/coffee1.svg'
 import {
   ActionsBtn,
   ButtonsContainer,
@@ -11,29 +12,56 @@ import {
   CoffeeSelectedImg,
 } from './styles'
 
-export function CoffeeSelected() {
+interface CoffeeSelectedProps {
+  image: string
+  title: string
+  price: number
+  quantity: number
+  item: CartProps[]
+}
+
+export function CoffeeSelected({
+  item,
+  image,
+  title,
+  price,
+  quantity,
+}: CoffeeSelectedProps) {
+  const { addToCart, decrementItemCart, removeAllQuantityOfItem } = useCart()
+
+  function handleAddToCart() {
+    addToCart(item)
+  }
+
+  function handleRemoveCart() {
+    decrementItemCart(item)
+  }
+
+  function handleRemoverAllQuantityOfItem() {
+    removeAllQuantityOfItem(item.id)
+  }
   return (
     <Container>
-      <CoffeeSelectedImg src={coffee} alt="" />
+      <CoffeeSelectedImg src={image} alt="" />
       <CoffeeSelectedContainer>
-        <h4>Expresso Tradicional</h4>
+        <h4>{title}</h4>
         <ButtonsContainer>
           <ActionsBtn>
-            <button>
+            <button onClick={handleRemoveCart}>
               <img src={decrement} alt="" />
             </button>
-            <span>1</span>
-            <button>
+            <span>{quantity}</span>
+            <button onClick={handleAddToCart}>
               <img src={increment} alt="" />
             </button>
           </ActionsBtn>
-          <button className="trash">
+          <button onClick={handleRemoverAllQuantityOfItem} className="trash">
             <img src={trash} alt="" />
             Remover
           </button>
         </ButtonsContainer>
       </CoffeeSelectedContainer>
-      <strong>R$ 9,90</strong>
+      <strong>R$ {price.toFixed(2).replace('.', ',')}</strong>
     </Container>
   )
 }

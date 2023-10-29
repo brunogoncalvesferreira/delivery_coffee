@@ -17,8 +17,10 @@ import money from '../../assets/money.svg'
 import { Inputs } from './components/Inputs/Inputs'
 import { CoffeeSelected } from './components/CoffeeSelected/CoffeeSelected'
 import { InfoValues } from './components/InfoValues/InfoValues'
+import { useCart } from '../../hooks/useCart'
 
 export function Checkout() {
+  const { cart } = useCart()
   return (
     <Container>
       <FormContainer
@@ -72,9 +74,16 @@ export function Checkout() {
         <ConfirmContainer>
           <h2>Cafés selecionados</h2>
           <SelectedOrders>
-            <CoffeeSelected />
-            <CoffeeSelected />
-            <CoffeeSelected />
+            {cart.map((item) => (
+              <CoffeeSelected
+                key={item.id}
+                image={item.image}
+                title={item.title}
+                quantity={item.quantity}
+                price={item.price}
+                item={item}
+              />
+            ))}
             <InfoValues />
           </SelectedOrders>
         </ConfirmContainer>

@@ -2,8 +2,10 @@ import { HeaderContainer } from './style'
 import { MapPin, ShoppingCart } from '@phosphor-icons/react'
 import { NavLink } from 'react-router-dom'
 import logoCoffee from '../../assets/logo.svg'
+import { useCart } from '../../hooks/useCart'
 
 export function Header() {
+  const { itemsInCart } = useCart()
   return (
     <>
       <HeaderContainer>
@@ -18,7 +20,7 @@ export function Header() {
           </div>
           <NavLink to={'/checkout'}>
             <ShoppingCart />
-            <span>8</span>
+            <span>{itemsInCart}</span>
           </NavLink>
         </nav>
       </HeaderContainer>

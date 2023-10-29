@@ -48,10 +48,11 @@ export const ButtonsContainer = styled.div`
     padding: 0.5rem;
     border: none;
     cursor: pointer;
-    width: 5.6875rem;
+    width: 6.6875rem;
 
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
 
     font-family: 'Roboto', sans-serif;
@@ -64,12 +65,14 @@ export const ButtonsContainer = styled.div`
 
 export const ActionsBtn = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
 
   background: ${(props) => props.theme['base-button']};
   border-radius: 6px;
   padding: 0.5rem;
-  width: 4.5rem;
+  width: 5.5rem;
 
   button {
     background: transparent;
