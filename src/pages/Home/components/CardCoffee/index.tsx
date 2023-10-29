@@ -13,7 +13,7 @@ import { useCart } from '../../../../hooks/useCart'
 import { ItemsProps } from '../../../../contexts/CoffeeContext'
 
 interface CardCoffeeProps {
-  item: ItemsProps[]
+  item: ItemsProps
   image: string
   title: string
   description: string
@@ -27,14 +27,14 @@ export function CardCoffee({
   description,
   price,
 }: CardCoffeeProps) {
-  const { addToCart, removeAllQuantityOfItem } = useCart()
+  const { addToCart, decrementItemCart } = useCart()
 
   function handleAddToCart() {
     addToCart(item)
   }
 
   function handleRemoverAllQuantityOfItem() {
-    removeAllQuantityOfItem(item.id)
+    decrementItemCart(item)
   }
 
   return (

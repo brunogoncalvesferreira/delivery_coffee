@@ -2,7 +2,7 @@ import decrement from '../../../../assets/decrement.svg'
 import increment from '../../../../assets/increment.svg'
 import trash from '../../../../assets/trash.svg'
 import { useCart } from '../../../../hooks/useCart'
-import { CartProps } from '../../../../contexts/CoffeeContext'
+import { ItemsProps } from '../../../../contexts/CoffeeContext'
 
 import {
   ActionsBtn,
@@ -17,7 +17,7 @@ interface CoffeeSelectedProps {
   title: string
   price: number
   quantity: number
-  item: CartProps[]
+  item: ItemsProps
 }
 
 export function CoffeeSelected({
