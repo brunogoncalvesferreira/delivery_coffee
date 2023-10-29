@@ -62,13 +62,10 @@ export const ButtonsActions = styled.div`
   padding: 0.5rem;
   border-radius: 6px;
 
-  input {
+  span {
     width: 2.375rem;
-    padding: 0.5rem;
-    outline: none;
     border: none;
     text-align: center;
-    background: transparent;
 
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;

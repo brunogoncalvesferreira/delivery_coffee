@@ -13,7 +13,7 @@ export interface ItemsProps {
   id: number
   image: string
   title: string
-  description: string
+  description?: string
   price: number
   quantity: number
 }
@@ -27,6 +27,7 @@ interface CartContextType {
   sumItemsInCart: () => number
   totalSumWithDelivery: () => number
   removeAllQuantityOfItem: (id: number) => void
+  quantityOfItem: (id: number) => number | undefined
 }
 
 export const CoffeeContext = createContext({} as CartContextType)
@@ -45,6 +46,7 @@ export function CartContextProvider({ children }: CoffeeContextProviderProps) {
 
   function addToCart(itemID: ItemsProps) {
     const existItemToCart = cart.find((item) => item.id === itemID.id)
+
     if (existItemToCart) {
       const updateCart = cart.map((items) => {
         if (items.id === itemID.id) {
@@ -53,6 +55,7 @@ export function CartContextProvider({ children }: CoffeeContextProviderProps) {
             quantity: items.quantity + 1,
           }
         }
+
         return items
       })
       setCart(updateCart)
@@ -84,6 +87,11 @@ export function CartContextProvider({ children }: CoffeeContextProviderProps) {
     }
   }
 
+  function quantityOfItem(id: number) {
+    const existItemToCart = cart.find((item) => item.id === id)
+    return existItemToCart?.quantity
+  }
+
   function removeAllQuantityOfItem(id: number) {
     const updateCart = cart.filter((items) => {
       return items.id !== id
@@ -112,6 +120,7 @@ export function CartContextProvider({ children }: CoffeeContextProviderProps) {
     sumItemsInCart,
     totalSumWithDelivery,
     removeAllQuantityOfItem,
+    quantityOfItem,
   }
 
   return (

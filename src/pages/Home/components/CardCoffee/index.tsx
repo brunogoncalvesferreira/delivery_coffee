@@ -16,7 +16,7 @@ interface CardCoffeeProps {
   item: ItemsProps
   image: string
   title: string
-  description: string
+  description?: string
   price: number
 }
 
@@ -27,7 +27,7 @@ export function CardCoffee({
   description,
   price,
 }: CardCoffeeProps) {
-  const { addToCart, decrementItemCart } = useCart()
+  const { addToCart, decrementItemCart, quantityOfItem } = useCart()
 
   function handleAddToCart() {
     addToCart(item)
@@ -36,6 +36,8 @@ export function CardCoffee({
   function handleRemoverAllQuantityOfItem() {
     decrementItemCart(item)
   }
+
+  const sumItemsInCart = quantityOfItem(item.id)
 
   return (
     <ContainerCardCoffee>
@@ -52,7 +54,7 @@ export function CardCoffee({
           <button onClick={handleRemoverAllQuantityOfItem}>
             <img src={decrement} alt="Imagem sinal de menos" />
           </button>
-          <input value={0} />
+          <span>{sumItemsInCart}</span>
           <button onClick={handleAddToCart}>
             <img src={increment} alt="Imagem sinal de mais" />
           </button>

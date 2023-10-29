@@ -18,16 +18,13 @@ import { Inputs } from './components/Inputs/Inputs'
 import { CoffeeSelected } from './components/CoffeeSelected/CoffeeSelected'
 import { InfoValues } from './components/InfoValues/InfoValues'
 import { useCart } from '../../hooks/useCart'
+import { Empty } from '../../components/Empty/Empty'
 
 export function Checkout() {
   const { cart } = useCart()
   return (
     <Container>
-      <FormContainer
-        onSubmit={(e) => {
-          e.preventDefault()
-        }}
-      >
+      <FormContainer onSubmit={(e) => e.preventDefault()}>
         <AddressContainer>
           <h2>Complete seu pedido</h2>
 
@@ -56,15 +53,15 @@ export function Checkout() {
 
               <PaymentCard>
                 <button>
-                  <img src={credit} alt="" />
+                  <img src={credit} alt="icon crédito" />
                   Cartão de crédito
                 </button>
                 <button>
-                  <img src={debit} alt="" />
+                  <img src={debit} alt="icon débito" />
                   Cartão de débito
                 </button>
                 <button>
-                  <img src={money} alt="" />
+                  <img src={money} alt="icon dinheiro" />
                   Dinheiro
                 </button>
               </PaymentCard>
@@ -74,6 +71,7 @@ export function Checkout() {
         <ConfirmContainer>
           <h2>Cafés selecionados</h2>
           <SelectedOrders>
+            {cart.length === 0 && <Empty />}
             {cart.map((item) => (
               <CoffeeSelected
                 key={item.id}
