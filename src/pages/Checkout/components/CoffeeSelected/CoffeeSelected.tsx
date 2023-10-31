@@ -47,15 +47,19 @@ export function CoffeeSelected({
         <h4>{title}</h4>
         <ButtonsContainer>
           <ActionsBtn>
-            <button onClick={handleRemoveCart}>
+            <button type="button" onClick={handleRemoveCart}>
               <img src={decrement} alt="" />
             </button>
             <span>{quantity}</span>
-            <button onClick={handleAddToCart}>
+            <button type="button" onClick={handleAddToCart}>
               <img src={increment} alt="" />
             </button>
           </ActionsBtn>
-          <button onClick={handleRemoverAllQuantityOfItem} className="trash">
+          <button
+            type="button"
+            onClick={handleRemoverAllQuantityOfItem}
+            className="trash"
+          >
             <img src={trash} alt="" />
             Remover
           </button>

@@ -34,12 +34,12 @@ export const Container = styled.div`
     }
   }
 
-  button {
+  input {
     width: 100%;
     background: ${(props) => props.theme.yellow};
     border: none;
     border-radius: 6px;
-    padding: 0.75rem 0.5rem;
+    padding: 1rem 0.5rem;
 
     color: ${(props) => props.theme.white};
     font-size: 0.875rem;

@@ -44,6 +44,8 @@ export function CartContextProvider({ children }: CoffeeContextProviderProps) {
     setItems(DATABASE)
   }, [])
 
+  const itemsInCart = cart.filter((items) => items).length
+
   function addToCart(itemID: ItemsProps) {
     const existItemToCart = cart.find((item) => item.id === itemID.id)
 
@@ -98,8 +100,6 @@ export function CartContextProvider({ children }: CoffeeContextProviderProps) {
     })
     setCart(updateCart)
   }
-
-  const itemsInCart = cart.filter((items) => items).length
 
   function sumItemsInCart() {
     const sum = cart.reduce((acc, item) => acc + item.quantity * item.price, 0)

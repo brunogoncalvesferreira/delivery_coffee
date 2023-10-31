@@ -8,7 +8,7 @@ import {
 } from './styles'
 import decrement from '../../../../assets/decrement.svg'
 import increment from '../../../../assets/increment.svg'
-import cart from '../../../../assets/btn-cart.svg'
+import Cart from '../../../../assets/btn-cart.svg'
 import { useCart } from '../../../../hooks/useCart'
 import { ItemsProps } from '../../../../contexts/CoffeeContext'
 
@@ -27,7 +27,7 @@ export function CardCoffee({
   description,
   price,
 }: CardCoffeeProps) {
-  const { addToCart, decrementItemCart, quantityOfItem } = useCart()
+  const { cart, addToCart, decrementItemCart, quantityOfItem } = useCart()
 
   function handleAddToCart() {
     addToCart(item)
@@ -55,13 +55,16 @@ export function CardCoffee({
             <img src={decrement} alt="Imagem sinal de menos" />
           </button>
           <span>{sumItemsInCart}</span>
-          <button onClick={handleAddToCart}>
+          <button disabled={cart.length === 0} onClick={handleAddToCart}>
             <img src={increment} alt="Imagem sinal de mais" />
           </button>
         </ButtonsActions>
 
-        <BtnCart>
-          <img src={cart} alt="Imagem de um carrinho de compras" />
+        <BtnCart
+          title="Clique é adicione ao carrinho"
+          onClick={handleAddToCart}
+        >
+          <img src={Cart} alt="Imagem de um carrinho de compras" />
         </BtnCart>
       </ContentActions>
     </ContainerCardCoffee>

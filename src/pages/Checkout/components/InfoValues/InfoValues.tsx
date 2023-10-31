@@ -23,7 +23,7 @@ export function InfoValues() {
         <strong>R$ {totalWithDelivery.toFixed(2).replace('.', ',')}</strong>
       </div>
 
-      <button type="submit">CONFIRMAR PEDIDO</button>
+      <input type="submit" value={'CONFIRMAR PEDIDO'} />
     </Container>
   )
 }

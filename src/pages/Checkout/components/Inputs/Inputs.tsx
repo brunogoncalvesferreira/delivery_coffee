@@ -1,23 +1,60 @@
+import { useFormContext } from 'react-hook-form'
 import { ContentInput } from './styles'
 
 export function Inputs() {
+  const { register } = useFormContext()
   return (
     <ContentInput>
-      <input type="text" className="cep" placeholder="CEP" />
-      <input type="text" className="street" placeholder="Rua" />
+      <input
+        {...register('cep')}
+        type="number"
+        className="cep"
+        placeholder="CEP"
+      />
+      <input
+        {...register('street')}
+        type="text"
+        className="street"
+        placeholder="Rua"
+      />
 
       <div>
-        <input type="text" className="number" placeholder="Número" />
+        <input
+          {...register('number')}
+          type="number"
+          className="number"
+          placeholder="Número"
+        />
         <div className="optional">
-          <input type="text" className="complement" placeholder="Complemento" />
+          <input
+            {...register('complement')}
+            type="text"
+            className="complement"
+            placeholder="Complemento"
+          />
           <span>Opcional</span>
         </div>
       </div>
 
       <div>
-        <input type="text" className="neighborhood" placeholder="Bairro" />
-        <input type="text" className="city" placeholder="Cidade" />
-        <input type="text" className="uf" placeholder="UF" />
+        <input
+          {...register('neighborhood')}
+          type="text"
+          className="neighborhood"
+          placeholder="Bairro"
+        />
+        <input
+          {...register('city')}
+          type="text"
+          className="city"
+          placeholder="Cidade"
+        />
+        <input
+          {...register('uf')}
+          type="text"
+          className="uf"
+          placeholder="UF"
+        />
       </div>
     </ContentInput>
   )
