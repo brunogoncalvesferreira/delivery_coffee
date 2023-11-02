@@ -18,19 +18,38 @@ import { Empty } from '../../components/Empty/Empty'
 import { SectionTitle } from './components/SectionTitle'
 import { MethodsPayment } from './components/MethodsPayment'
 import { useForm, FormProvider } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const confirmFormValidationSchema = z.object({
+  cep: z.string().min(1, 'Informe o CEP'),
+  street: z.string().min(1, 'Rua obrigatória'),
+  number: z.string().min(1, 'Número obrigatório'),
+  complement: z.string(),
+  neighborhood: z.string().min(1, 'Bairro obrigatório'),
+  city: z.string().min(1, 'Cidade obrigatória'),
+  uf: z.string().min(1, 'UF obrigatória'),
+})
+
+type FormValidation = z.infer<typeof confirmFormValidationSchema>
 
 export function Checkout() {
   const { cart } = useCart()
-  const methods = useForm()
 
-  function confirmOrder(data: any) {
+  const methods = useForm<FormValidation>({
+    resolver: zodResolver(confirmFormValidationSchema),
+  })
+
+  const { handleSubmit } = methods
+
+  function confirmOrder(data: FormValidation) {
     console.log(data)
   }
 
   return (
     <FormProvider {...methods}>
       <Container>
-        <form onSubmit={methods.handleSubmit(confirmOrder)}>
+        <form onSubmit={handleSubmit(confirmOrder)}>
           <AddressContainer>
             <h2>Complete seu pedido</h2>
 

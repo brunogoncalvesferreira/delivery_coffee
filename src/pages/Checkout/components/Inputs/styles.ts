@@ -24,6 +24,13 @@ export const ContentInput = styled.div`
     }
   }
 
+  span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: ${(props) => props.theme['base-error']};
+    margin-top: -0.5rem;
+  }
+
   .cep,
   .number,
   .neighborhood {
@@ -66,7 +73,7 @@ export const ContentInput = styled.div`
     flex: 1;
   }
 
-  span {
+  strong {
     position: absolute;
     top: 1rem;
     right: 0.75rem;
@@ -77,4 +84,10 @@ export const ContentInput = styled.div`
     font-style: italic;
     color: ${(props) => props.theme['base-label']};
   }
+`
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 `

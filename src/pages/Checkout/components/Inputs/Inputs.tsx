@@ -1,8 +1,14 @@
 import { useFormContext } from 'react-hook-form'
-import { ContentInput } from './styles'
+import { ContentInput, InputContainer } from './styles'
+import { ReactNode } from 'react'
+
+// import { ErrorMessage } from '@hookform/error-message'
 
 export function Inputs() {
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
   return (
     <ContentInput>
       <input
@@ -11,20 +17,24 @@ export function Inputs() {
         className="cep"
         placeholder="CEP"
       />
+      {errors.cep && <span>{errors.cep.message as ReactNode}</span>}
       <input
         {...register('street')}
         type="text"
         className="street"
         placeholder="Rua"
       />
-
+      {errors.street && <span>{errors.street.message as ReactNode}</span>}
       <div>
-        <input
-          {...register('number')}
-          type="number"
-          className="number"
-          placeholder="Número"
-        />
+        <InputContainer>
+          <input
+            {...register('number')}
+            type="number"
+            className="number"
+            placeholder="Número"
+          />
+          {errors.number && <span>{errors.number.message as ReactNode}</span>}
+        </InputContainer>
         <div className="optional">
           <input
             {...register('complement')}
@@ -32,29 +42,40 @@ export function Inputs() {
             className="complement"
             placeholder="Complemento"
           />
-          <span>Opcional</span>
+          <strong>Opcional</strong>
         </div>
       </div>
 
       <div>
-        <input
-          {...register('neighborhood')}
-          type="text"
-          className="neighborhood"
-          placeholder="Bairro"
-        />
-        <input
-          {...register('city')}
-          type="text"
-          className="city"
-          placeholder="Cidade"
-        />
-        <input
-          {...register('uf')}
-          type="text"
-          className="uf"
-          placeholder="UF"
-        />
+        <InputContainer>
+          <input
+            {...register('neighborhood')}
+            type="text"
+            className="neighborhood"
+            placeholder="Bairro"
+          />
+          {errors.neighborhood && (
+            <span>{errors.neighborhood.message as ReactNode}</span>
+          )}
+        </InputContainer>
+        <InputContainer>
+          <input
+            {...register('city')}
+            type="text"
+            className="city"
+            placeholder="Cidade"
+          />
+          {errors.city && <span>{errors.city.message as ReactNode}</span>}
+        </InputContainer>
+        <InputContainer>
+          <input
+            {...register('uf')}
+            type="text"
+            className="uf"
+            placeholder="UF"
+          />
+          {errors.uf && <span>{errors.uf.message as ReactNode}</span>}
+        </InputContainer>
       </div>
     </ContentInput>
   )
