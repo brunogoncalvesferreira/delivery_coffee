@@ -4,6 +4,7 @@ import { PaymentMethodsContainer } from './styles'
 import credit from '../../../../assets/credit.svg'
 import debit from '../../../../assets/debit.svg'
 import money from '../../../../assets/money.svg'
+import { useFormContext } from 'react-hook-form'
 
 const data = {
   credit: {
@@ -21,6 +22,7 @@ const data = {
 }
 
 export function MethodsPayment() {
+  const { register } = useFormContext()
   return (
     <PaymentMethodsContainer>
       {Object.entries(data).map(([key, { label, icon }]) => (
@@ -30,6 +32,7 @@ export function MethodsPayment() {
           key={label}
           label={label}
           value={key}
+          {...register('methodPayment')}
         />
       ))}
     </PaymentMethodsContainer>

@@ -16,6 +16,13 @@ export const PaymentContainer = styled.div`
       background: ${(props) => props.theme['purple-light']};
     }
   }
+
+  span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: ${(props) => props.theme['base-error']};
+    margin-top: -0.5rem;
+  }
 `
 
 export const ContentContainer = styled.div`

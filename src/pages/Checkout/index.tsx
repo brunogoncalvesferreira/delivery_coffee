@@ -21,14 +21,27 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+enum PaymentMethods {
+  credit = 'credit',
+  debit = 'debit',
+  money = 'money',
+}
+
 const confirmFormValidationSchema = z.object({
   cep: z.string().min(1, 'Informe o CEP'),
-  street: z.string().min(1, 'Rua obrigatória'),
-  number: z.string().min(1, 'Número obrigatório'),
+  street: z.string().min(1, 'Informe a rua'),
+  number: z.string().min(1, 'Infome o número'),
   complement: z.string(),
-  neighborhood: z.string().min(1, 'Bairro obrigatório'),
-  city: z.string().min(1, 'Cidade obrigatória'),
-  uf: z.string().min(1, 'UF obrigatória'),
+  neighborhood: z.string().min(1, 'Informe o bairro'),
+  city: z.string().min(1, 'Informe a cidade'),
+  uf: z.string().min(1, 'Informe a UF'),
+  methodPayment: z.nativeEnum(PaymentMethods, {
+    errorMap: () => {
+      return {
+        message: 'Selecione a forma de pagamento',
+      }
+    },
+  }),
 })
 
 type FormValidation = z.infer<typeof confirmFormValidationSchema>
