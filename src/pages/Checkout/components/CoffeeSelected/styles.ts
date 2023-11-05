@@ -16,6 +16,10 @@ export const Container = styled.div`
     color: ${(props) => props.theme['base-text']};
     line-height: 1.3;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const CoffeeSelectedImg = styled.img`
