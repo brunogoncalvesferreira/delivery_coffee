@@ -45,7 +45,7 @@ const confirmFormValidationSchema = z.object({
   }),
 })
 
-type FormValidation = z.infer<typeof confirmFormValidationSchema>
+export type FormValidation = z.infer<typeof confirmFormValidationSchema>
 
 export function Checkout() {
   const { cart } = useCart()

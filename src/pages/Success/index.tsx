@@ -6,9 +6,14 @@ import payment from '../../assets/payment.svg'
 import successImage from '../../assets/success-image.svg'
 import { useLocation } from 'react-router-dom'
 import { paymentMethods } from '../Checkout/components/MethodsPayment'
+import { FormValidation } from '../Checkout'
+
+interface LocationState {
+  state: FormValidation
+}
 
 export function Success() {
-  const { state } = useLocation()
+  const { state } = useLocation() as unknown as LocationState
 
   return (
     <Container>
