@@ -5,29 +5,31 @@ import credit from '../../../../assets/credit.svg'
 import debit from '../../../../assets/debit.svg'
 import money from '../../../../assets/money.svg'
 
-const data = [
-  {
-    title: 'Cartão de crédito',
+const data = {
+  credit: {
+    label: 'Cartão de crédito',
     icon: credit,
   },
-  {
-    title: 'Cartão de débito',
+  debit: {
+    label: 'Cartão de débito',
     icon: debit,
   },
-  {
-    title: 'Dinheiro',
+  money: {
+    label: 'Dinheiro',
     icon: money,
   },
-]
+}
 
 export function MethodsPayment() {
   return (
     <PaymentMethodsContainer>
-      {data.map((item) => (
+      {Object.entries(data).map(([key, { label, icon }]) => (
         <MethodPaymentInput
-          key={item.title}
-          title={item.title}
-          icon={item.icon}
+          icon={icon}
+          id={key}
+          key={label}
+          label={label}
+          value={key}
         />
       ))}
     </PaymentMethodsContainer>

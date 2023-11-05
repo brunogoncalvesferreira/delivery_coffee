@@ -1,20 +1,26 @@
-import { ContentContainer } from '../../styles'
+import { InputHTMLAttributes } from 'react'
+import { ContentContainer, PaymentContainer } from './styles'
 
-interface MethodPaymentInputProps {
-  title: string
+type MethodPaymentInputProps = InputHTMLAttributes<HTMLInputElement> & {
   icon: string
+  label: string
 }
 
-export function MethodPaymentInput({ title, icon }: MethodPaymentInputProps) {
+export function MethodPaymentInput({
+  id,
+  icon,
+  label,
+  ...props
+}: MethodPaymentInputProps) {
   return (
-    <>
-      <input type="radio" />
-      <label className="label" htmlFor="">
+    <PaymentContainer>
+      <input id={id} type="radio" {...props} name="methodPayment" />
+      <label className="label" htmlFor={id}>
         <ContentContainer>
-          <img src={icon} alt={title} />
-          {title}
+          <img src={icon} alt={label} />
+          {label}
         </ContentContainer>
       </label>
-    </>
+    </PaymentContainer>
   )
 }
