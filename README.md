@@ -67,7 +67,7 @@
 
   ## 📝 Licença
  
-  Este projeto está licenciado com a licença [MIT](https://github.com/brunogoncalvesferreira/coffee_delivery/blob/main/LICENSE).
+  Este projeto está licenciado com a licença [MIT](https://github.com/brunogoncalvesferreira/delivery_coffee/blob/main/LICENSE).
 
   <h2>🙋🏻‍♂️ Entre em contato<h2>
   <div style="display: flex;">
