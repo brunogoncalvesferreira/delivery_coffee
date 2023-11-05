@@ -20,7 +20,7 @@ export function Success() {
           <div className="delivery">
             <img src={map} alt="" />
             <p>
-              Entrega em
+              Entrega em {''}
               <b>
                 {state.street}, {state.number}
               </b>
