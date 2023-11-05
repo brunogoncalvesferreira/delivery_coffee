@@ -20,6 +20,7 @@ import { MethodsPayment } from './components/MethodsPayment'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
 
 enum PaymentMethods {
   credit = 'credit',
@@ -55,8 +56,12 @@ export function Checkout() {
 
   const { handleSubmit } = methods
 
+  const navigate = useNavigate()
+
   function confirmOrder(data: FormValidation) {
-    console.log(data)
+    navigate('/success', {
+      state: data,
+    })
   }
 
   return (

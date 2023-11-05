@@ -6,7 +6,7 @@ import debit from '../../../../assets/debit.svg'
 import money from '../../../../assets/money.svg'
 import { useFormContext } from 'react-hook-form'
 
-const data = {
+export const paymentMethods = {
   credit: {
     label: 'Cartão de crédito',
     icon: credit,
@@ -25,7 +25,7 @@ export function MethodsPayment() {
   const { register } = useFormContext()
   return (
     <PaymentMethodsContainer>
-      {Object.entries(data).map(([key, { label, icon }]) => (
+      {Object.entries(paymentMethods).map(([key, { label, icon }]) => (
         <MethodPaymentInput
           icon={icon}
           id={key}
