@@ -1,22 +1,20 @@
-import credit from '../../../../../../assets/credit.svg'
-import debit from '../../../../../../assets/debit.svg'
-import money from '../../../../../../assets/money.svg'
+import { ContentContainer } from '../../styles'
 
-export function MethodPaymentInput() {
+interface MethodPaymentInputProps {
+  title: string
+  icon: string
+}
+
+export function MethodPaymentInput({ title, icon }: MethodPaymentInputProps) {
   return (
     <>
-      <button type="button">
-        <img src={credit} alt="icon crédito" />
-        Cartão de crédito
-      </button>
-      <button type="button">
-        <img src={debit} alt="icon débito" />
-        Cartão de débito
-      </button>
-      <button type="button">
-        <img src={money} alt="icon dinheiro" />
-        Dinheiro
-      </button>
+      <input type="radio" />
+      <label className="label" htmlFor="">
+        <ContentContainer>
+          <img src={icon} alt={title} />
+          {title}
+        </ContentContainer>
+      </label>
     </>
   )
 }
